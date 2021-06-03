@@ -1,0 +1,16 @@
+[ {
+  "firstName" : "Adam",
+  "lastName" : "Erikson",
+  "birthDay" : "2003-05-28",
+  "ownerId" : 3
+}, {
+  "firstName" : "Ann",
+  "lastName" : "Nilson",
+  "birthDay" : "1996-12-24",
+  "ownerId" : 2
+}, {
+  "firstName" : "Anna",
+  "lastName" : "Olson",
+  "birthDay" : "2000-04-15",
+  "ownerId" : 1
+} ]

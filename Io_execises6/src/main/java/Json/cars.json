@@ -1,0 +1,49 @@
+[ {
+  "carReg" : "FGH 505",
+  "model" : "Focus",
+  "brand" : "Ford",
+  "regDate" : "2020-01-02",
+  "owner" : {
+    "firstName" : "Adam",
+    "lastName" : "Erikson",
+    "birthDay" : "2003-05-28",
+    "ownerId" : 3
+  },
+  "carId" : 1
+}, {
+  "carReg" : "FGH 515",
+  "model" : "v60",
+  "brand" : "Volvo",
+  "regDate" : "2020-12-12",
+  "owner" : {
+    "firstName" : "Anna",
+    "lastName" : "Olson",
+    "birthDay" : "2000-04-15",
+    "ownerId" : 1
+  },
+  "carId" : 4
+}, {
+  "carReg" : "FLK 452",
+  "model" : "A3",
+  "brand" : "Audi",
+  "regDate" : "2018-08-23",
+  "owner" : {
+    "firstName" : "Ann",
+    "lastName" : "Nilson",
+    "birthDay" : "1996-12-24",
+    "ownerId" : 2
+  },
+  "carId" : 3
+}, {
+  "carReg" : "DRT 591",
+  "model" : "v40",
+  "brand" : "Volvo",
+  "regDate" : "2019-05-02",
+  "owner" : {
+    "firstName" : "Adam",
+    "lastName" : "Erikson",
+    "birthDay" : "2003-05-28",
+    "ownerId" : 3
+  },
+  "carId" : 2
+} ]

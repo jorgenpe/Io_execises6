@@ -30,6 +30,17 @@ public class Todo {
         this.assignee = assignee;
     }
 
+
+
+    public Todo(int todoId, String title, String description, LocalDate deadline, boolean done) {
+        this.todoId = todoId;
+        this.title = title;
+        this.description = description;
+        this.deadline = deadline;
+        this.done = done;
+        this.assignee = null;
+    }
+
     public Todo() {
     }
 
@@ -39,6 +50,10 @@ public class Todo {
 
     public Person getAssignee() {
         return assignee;
+    }
+
+    public void setAssignee(Person assignee) {
+        this.assignee = assignee;
     }
 
     public String getTitle() {
@@ -73,15 +88,23 @@ public class Todo {
         this.done = done;
     }
 
+    // Did something ugly. To handle toString I checked for null to handle assignee.
     @Override
     public String toString() {
+        String assigneeString;
+        if(assignee == null){
+            assigneeString = "Null";
+        }else
+        {
+            assigneeString = assignee.toString();
+        }
         return "Todo{" +
                 "todoId=" + todoId +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", deadline=" + deadline +
                 ", done=" + done +
-                ", assigneeId=" + assignee.toString() +
+                ", assigneeId=" + assigneeString +
                 '}';
     }
 }

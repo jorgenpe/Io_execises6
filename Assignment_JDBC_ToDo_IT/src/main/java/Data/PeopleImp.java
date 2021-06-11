@@ -172,12 +172,15 @@ public class PeopleImp extends AbstractDAOCloseHelper implements People {
     @Override
     public boolean deleteById(int id) {
 
-
+        //Was forced to divide the query to two part to solve delete. The foreign key dilemma.
         Connection connection = null;
         PreparedStatement statement = null;
         int rowsDeleted = 0;
         try{
             connection = ConnectionBuilder.getConnection();
+            statement = connection.prepareStatement("UPDATE todo_item SET assignee_id = NULL WHERE assignee_id = ?  " );
+            statement.setInt(1, id);
+            rowsDeleted = statement.executeUpdate();
             statement = connection.prepareStatement("DELETE FROM person WHERE person_id = ?");
             statement.setInt(1, id);
             rowsDeleted = statement.executeUpdate();

@@ -16,15 +16,21 @@ public class TodoItemsImp extends AbstractDAOCloseHelper implements TodoItems{
         if(todo == null) throw new IllegalArgumentException("Todo todo was null");
         if(todo.getTodoId() != 0) throw new IllegalArgumentException("todoId is already set and todo can't be created");
         if(todo.getAssignee() != null){
-            if(todo.getAssignee().getId() == 0) throw new IllegalArgumentException("Todo  have a illegal person");
-        }else{
-            throw new IllegalArgumentException("Person was null");
+            if(todo.getAssignee().getId() == 0)throw new IllegalArgumentException("Person was null");
         }
+
 
         Todo createdTodo = null;
         Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
+        int assign_id ;
+        if(todo.getAssignee() == null){
+            assign_id = 0;
+        }else
+        {
+            assign_id = todo.getAssignee().getId();
+        }
 
         try{
             connection = ConnectionBuilder.getConnection();
@@ -33,7 +39,7 @@ public class TodoItemsImp extends AbstractDAOCloseHelper implements TodoItems{
             statement.setString(2, todo.getDescription());
             statement.setDate(3,Date.valueOf(todo.getDeadline()));
             statement.setBoolean(4, todo.isDone());
-            statement.setInt(5, todo.getAssignee().getId());
+            statement.setInt(5, assign_id);
             statement.execute();
             resultSet = statement.getGeneratedKeys();
             while(resultSet.next()){
@@ -240,18 +246,97 @@ public class TodoItemsImp extends AbstractDAOCloseHelper implements TodoItems{
         return todoList;
     }
 
+    // A little tricky to solve. Was forced to do a thing with toString in Todo to handle the fallout.
     @Override
     public Collection<Todo> findByUnassignedTodoItems() {
-        return null;
+
+        Collection<Todo> todoList = new ArrayList<>();
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+
+        try{
+            connection = ConnectionBuilder.getConnection();
+            statement = connection.prepareStatement("SELECT * FROM todo_item WHERE assignee_id IS NULL ");
+            resultSet = statement.executeQuery();
+
+            while(resultSet.next()){
+                todoList.add(new Todo(
+                        resultSet.getInt("todo_id"),
+                        resultSet.getString("title"),
+                        resultSet.getString("description"),
+                        resultSet.getDate("deadline").toLocalDate(),
+                        resultSet.getBoolean("done")
+
+
+                ));
+            }
+        }catch(SQLException ex){
+            ex.printStackTrace();
+        }finally{
+            closeAll(resultSet,statement,connection);
+
+        }
+
+
+
+        return todoList;
+
     }
 
     @Override
     public Todo update(Todo todo) {
-        return null;
+
+        People people = new PeopleImp();
+        Todo todoTemp = null;
+        Connection connection = null;
+        PreparedStatement statement = null;
+
+
+        try{
+
+            connection = ConnectionBuilder.getConnection();
+            statement = connection.prepareStatement("UPDATE todo_item SET title = ?, description = ?,deadline = ?, done = ?, assignee_id = ? WHERE todo_id = ?");
+            statement.setString(1,todo.getTitle());
+            statement.setString(2,todo.getDescription());
+            statement.setDate(3,Date.valueOf(todo.getDeadline()));
+            statement.setBoolean(4,todo.isDone());
+            statement.setInt(5,todo.getAssignee().getId());
+            statement.setInt(6,todo.getTodoId());
+            statement.execute();
+
+
+        }catch(SQLException ex){
+            ex.printStackTrace();
+        }finally{
+            closeAll(statement,connection);
+
+        }
+
+
+        return todo;
+
     }
 
     @Override
     public boolean deleteById(int id) {
-        return false;
+
+
+        Connection connection = null;
+        PreparedStatement statement = null;
+        int rowsDeleted = 0;
+        try{
+            connection = ConnectionBuilder.getConnection();
+            statement = connection.prepareStatement("DELETE FROM todo_item WHERE todo_id = ?");
+            statement.setInt(1, id);
+            rowsDeleted = statement.executeUpdate();
+
+        }catch(SQLException ex){
+            ex.printStackTrace();
+        }finally {
+            closeAll(statement, connection);
+        }
+
+        return rowsDeleted > 0;
     }
 }

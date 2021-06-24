@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import java.util.Collection;
+
 @Repository
 public class DetailsDAORepository implements DetailsDAO{
 

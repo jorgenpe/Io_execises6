@@ -1,9 +1,10 @@
-package DAO;
+package work_shop.WorkShop.DAO;
 
 
-import Models.Details;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import work_shop.WorkShop.Models.Details;
 
 import javax.persistence.EntityManager;
 import java.util.Collection;

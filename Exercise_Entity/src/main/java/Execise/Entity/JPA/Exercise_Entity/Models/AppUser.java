@@ -1,4 +1,4 @@
-package Models;
+package Execise.Entity.JPA.Exercise_Entity.Models;
 
 
 import javax.persistence.Entity;
@@ -31,6 +31,11 @@ public class AppUser {
         this.password = password;
     }
     public AppUser(){
+        this.userId = null;
+        this.userName = null;
+        this.firstName = null;
+        this.lastName = null;
+        this.password = null;
     }
 
     public String getUserId() {

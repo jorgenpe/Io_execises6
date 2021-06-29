@@ -1,53 +1,53 @@
-package DAO;
+package work_shop.WorkShop.DAO;
 
-import Models.AppUser;
-import Models.Book;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import work_shop.WorkShop.Models.AppUser;
 
 import javax.persistence.EntityManager;
 import java.util.Collection;
+
 @Repository
-public class BookDAORepository implements BookDAO {
+public class AppUserDAORepository implements AppUserDAO{
+
 
     private final EntityManager entityManager;
 
     @Autowired
-    public BookDAORepository(EntityManager entityManager) {
+    public AppUserDAORepository(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 
     @Override
     @Transactional(readOnly = true)
-    public Book findById(int id) {
-        return entityManager.find(Book.class, id);
+    public AppUser findById(int id) {
+        return entityManager.find(AppUser.class, id);
     }
 
     @Override
     @Transactional(readOnly = true)
-    public Collection<Book> findAll() {
-        return entityManager.createQuery("SELECT s FROM Book s", Book.class ).getResultList();
+    public Collection<AppUser> findAll() {
+        return entityManager.createQuery("SELECT s FROM AppUser s", AppUser.class ).getResultList();
     }
 
     @Override
     @Transactional
-    public Book create(Book book) {
-
-        entityManager.persist(book);
-        return book;
+    public AppUser create(AppUser appUser) {
+        entityManager.persist(appUser);
+        return appUser;
     }
 
     @Override
     @Transactional
-    public Book update(Book book) {
-        entityManager.merge(book);
-        return book;
+    public AppUser update(AppUser appUser) {
+        return entityManager.merge(appUser);
     }
 
     @Override
     @Transactional
-    public void Delete(int id) {
+    public void delete(int id) {
 
         if(entityManager.contains(findById(id))){
             entityManager.remove(findById(id));

@@ -1,7 +1,8 @@
-package DAO;
+package work_shop.WorkShop.DAO;
 
-import Models.Book;
 
+
+import java.awt.print.Book;
 import java.util.Collection;
 
 public interface BookDAO {

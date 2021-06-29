@@ -1,4 +1,4 @@
-package Models;
+package work_shop.WorkShop.Models;
 
 import javax.persistence.*;
 import java.time.LocalDate;

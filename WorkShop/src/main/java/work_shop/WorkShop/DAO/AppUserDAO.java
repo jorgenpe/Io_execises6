@@ -1,8 +1,9 @@
-package DAO;
+package work_shop.WorkShop.DAO;
 
-import Models.AppUser;
+import work_shop.WorkShop.Models.AppUser;
 
 import java.util.Collection;
+
 
 public interface AppUserDAO {
 

@@ -1,52 +1,53 @@
-package DAO;
+package work_shop.WorkShop.DAO;
 
-import Models.AppUser;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import java.awt.print.Book;
 import java.util.Collection;
-
 @Repository
-public class AppUserDAORepository implements AppUserDAO{
-
+public class BookDAORepository implements BookDAO {
 
     private final EntityManager entityManager;
 
     @Autowired
-    public AppUserDAORepository(EntityManager entityManager) {
+    public BookDAORepository(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 
     @Override
     @Transactional(readOnly = true)
-    public AppUser findById(int id) {
-        return entityManager.find(AppUser.class, id);
+    public Book findById(int id) {
+        return entityManager.find(Book.class, id);
     }
 
     @Override
     @Transactional(readOnly = true)
-    public Collection<AppUser> findAll() {
-        return entityManager.createQuery("SELECT s FROM AppUser s", AppUser.class ).getResultList();
+    public Collection<Book> findAll() {
+        return entityManager.createQuery("SELECT s FROM Book s", Book.class ).getResultList();
     }
 
     @Override
     @Transactional
-    public AppUser create(AppUser appUser) {
-        entityManager.persist(appUser);
-        return appUser;
+    public Book create(Book book) {
+
+        entityManager.persist(book);
+        return book;
     }
 
     @Override
     @Transactional
-    public AppUser update(AppUser appUser) {
-        return entityManager.merge(appUser);
+    public Book update(Book book) {
+        entityManager.merge(book);
+        return book;
     }
 
     @Override
     @Transactional
-    public void delete(int id) {
+    public void Delete(int id) {
 
         if(entityManager.contains(findById(id))){
             entityManager.remove(findById(id));

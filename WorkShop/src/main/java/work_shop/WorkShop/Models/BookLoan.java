@@ -1,6 +1,4 @@
-package Models;
-
-import org.hibernate.annotations.Cascade;
+package work_shop.WorkShop.Models;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -15,48 +13,24 @@ public class BookLoan {
     private LocalDate loanDate;
     private LocalDate dueDate;
     private boolean returned;
-    @ManyToOne(cascade = {CascadeType.PERSIST,
-                          CascadeType.MERGE,
+    @ManyToOne(cascade = {
                           CascadeType.DETACH,
-                          CascadeType.REFRESH}
+                          CascadeType.REFRESH},
+                          fetch = FetchType.LAZY
     )
+
+    @JoinColumn(name = "book_loan_user_id",table = "book_loan")
     private AppUser borrower;
-    @ManyToOne(cascade = {CascadeType.PERSIST,
-            CascadeType.MERGE,
+    @ManyToOne(cascade = {
             CascadeType.DETACH,
-            CascadeType.REFRESH}
+            CascadeType.REFRESH},
+            fetch = FetchType.LAZY
     )
+    @JoinColumn(name = "book_loan_book_id",table = "book")
     private Book book;
 
-    public BookLoan(int loanId, LocalDate loanDate, LocalDate dueDate, boolean returned, AppUser borrower, Book book) {
-        this.loanId = loanId;
-        this.loanDate = loanDate;
-        this.dueDate = dueDate;
-        this.returned = returned;
-        this.borrower = borrower;
-        this.book = book;
-    }
 
-    public BookLoan(LocalDate loanDate, LocalDate dueDate, boolean returned, AppUser borrower, Book book) {
-        this.loanDate = loanDate;
-        this.dueDate = dueDate;
-        this.returned = returned;
-        this.borrower = borrower;
-        this.book = book;
-    }
 
-    public BookLoan(LocalDate loanDate, LocalDate dueDate, boolean returned, AppUser borrower) {
-        this.loanDate = loanDate;
-        this.dueDate = dueDate;
-        this.returned = returned;
-        this.borrower = borrower;
-    }
-
-    public BookLoan(LocalDate loanDate, LocalDate dueDate, boolean returned) {
-        this.loanDate = loanDate;
-        this.dueDate = dueDate;
-        this.returned = returned;
-    }
 
     public BookLoan() {
     }

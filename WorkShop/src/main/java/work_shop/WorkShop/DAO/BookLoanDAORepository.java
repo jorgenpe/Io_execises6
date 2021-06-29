@@ -1,7 +1,7 @@
-package DAO;
+package work_shop.WorkShop.DAO;
 
-import Models.AppUser;
-import Models.BookLoan;
+import work_shop.WorkShop.Models.AppUser;
+import work_shop.WorkShop.Models.BookLoan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -48,7 +48,7 @@ public class BookLoanDAORepository implements BookLoanDAO{
 
     @Override
     @Transactional
-    public void Delete(int id) {
+    public void delete(int id) {
 
         if(entityManager.contains(findById(id))){
             entityManager.remove(findById(id));

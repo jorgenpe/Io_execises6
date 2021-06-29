@@ -1,6 +1,4 @@
-package DAO;
-
-import Models.Details;
+package work_shop.WorkShop.DAO;
 
 import java.util.Collection;
 

@@ -1,6 +1,6 @@
-package DAO;
+package Execise.Entity.JPA.Exercise_Entity.DAO;
 
-import Models.AppUser;
+import Execise.Entity.JPA.Exercise_Entity.Models.AppUser;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;

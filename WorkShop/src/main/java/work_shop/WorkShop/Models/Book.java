@@ -1,7 +1,8 @@
-package Models;
+package work_shop.WorkShop.Models;
 
 import javax.persistence.*;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 public class Book {
@@ -14,6 +15,20 @@ public class Book {
     private String title;
     private int MaxLoanDays;
 
+    @ManyToMany(
+
+            cascade = {CascadeType.DETACH,CascadeType.DETACH,CascadeType.PERSIST,CascadeType.REFRESH
+
+            }
+    )
+    @JoinTable(
+            name = "book_author",
+            joinColumns = @JoinColumn( name = "book_id") ,
+            inverseJoinColumns = @JoinColumn(name = "author_id")
+
+    )
+    private Set<Author> authors;
+
     public Book(int bookId, String isbn, String title, int maxLoanDays) {
         this.bookId = bookId;
         this.isbn = isbn;
@@ -21,10 +36,12 @@ public class Book {
         MaxLoanDays = maxLoanDays;
     }
 
-    public Book(String isbn, String title, int maxLoanDays) {
+    public Book(int bookId, String isbn, String title, int maxLoanDays, Set<Author> authors) {
+        this.bookId = bookId;
         this.isbn = isbn;
         this.title = title;
         MaxLoanDays = maxLoanDays;
+        this.authors = authors;
     }
 
     public Book() {

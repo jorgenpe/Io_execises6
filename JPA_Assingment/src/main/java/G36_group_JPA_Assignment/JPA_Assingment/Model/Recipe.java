@@ -1,9 +1,10 @@
-package G36_group_JPA_Assignment.Model;
+package G36_group_JPA_Assignment.JPA_Assingment.Model;
 
 
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -21,13 +22,14 @@ public class Recipe {
     private String recipeName;
 
     @OneToMany( cascade = {CascadeType.DETACH, CascadeType.REFRESH, CascadeType.PERSIST, CascadeType.MERGE},
-    fetch = FetchType.LAZY,
-    orphanRemoval = true)
+            fetch = FetchType.LAZY,
+            mappedBy = "recipe",
+            orphanRemoval = true)
     private List<RecipeIngredient> recipeIngredient;
 
     @OneToOne(cascade = CascadeType.ALL,
             fetch = FetchType.LAZY)
-
+    @JoinColumn(name = "instruction_id")
     private RecipeInstruction instruction;
 
     @ManyToMany(
@@ -36,6 +38,8 @@ public class Recipe {
 
             },
             fetch = FetchType.LAZY
+
+
     )
     @JoinTable(
             name = "recipe_recipe_category",
@@ -56,4 +60,19 @@ public class Recipe {
 
     }
 
+    public void setRecipeIngredient(List<RecipeIngredient> recipeIngredient) {
+
+        if(this.recipeIngredient == null){
+            this.recipeIngredient = new ArrayList<>();
+        }
+        this.recipeIngredient = recipeIngredient;
+    }
+
+    public void setCategories(List<RecipeCategory> categories) {
+
+        if(this.categories == null){
+            this.categories = new ArrayList<>();
+        }
+        this.categories = categories;
+    }
 }

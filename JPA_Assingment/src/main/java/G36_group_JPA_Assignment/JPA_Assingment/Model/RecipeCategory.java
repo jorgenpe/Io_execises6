@@ -1,8 +1,9 @@
-package G36_group_JPA_Assignment.Model;
+package G36_group_JPA_Assignment.JPA_Assingment.Model;
 
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -24,7 +25,16 @@ public class RecipeCategory {
             cascade = {CascadeType.DETACH,CascadeType.DETACH,CascadeType.PERSIST,CascadeType.REFRESH
 
             },
-            fetch = FetchType.LAZY
+            fetch = FetchType.LAZY,
+            mappedBy = "categories"
     )
     private List<Recipe> recipes;
+
+
+    public void setRecipes(List<Recipe> recipes) {
+        if(this.recipes == null){
+            this.recipes = new ArrayList<>();
+        }
+        this.recipes = recipes;
+    }
 }

@@ -29,7 +29,7 @@ public class Recipe {
 
     @OneToOne(cascade = CascadeType.ALL,
             fetch = FetchType.LAZY)
-    @JoinColumn(name = "instruction_id")
+    //@JoinColumn(name = "instruction_id")
     private RecipeInstruction instruction;
 
     @ManyToMany(

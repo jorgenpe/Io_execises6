@@ -2,6 +2,8 @@ package G36_group_JPA_Assignment.JPA_Assingment.Model;
 
 
 import lombok.*;
+import net.minidev.json.annotate.JsonIgnore;
+
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -21,11 +23,14 @@ public class Recipe {
     private int recipeId;
     private String recipeName;
 
-    @OneToMany( cascade = {CascadeType.DETACH, CascadeType.REFRESH, CascadeType.PERSIST, CascadeType.MERGE},
+
+    @OneToMany(targetEntity = RecipeIngredient.class, cascade = {CascadeType.ALL},
             fetch = FetchType.LAZY,
             mappedBy = "recipe",
-            orphanRemoval = true)
-    private List<RecipeIngredient> recipeIngredient;
+            orphanRemoval = true
+    )
+    @JsonIgnore
+    private List<RecipeIngredient> recipeIngredients;
 
     @OneToOne(cascade = CascadeType.ALL,
             fetch = FetchType.LAZY)
@@ -53,7 +58,7 @@ public class Recipe {
     public Recipe(String recipeName,List<RecipeIngredient> listRecipeIngredient, RecipeInstruction instruction,List<RecipeCategory> categories){
 
         this.recipeName = recipeName;
-        this.recipeIngredient = listRecipeIngredient;
+        this.recipeIngredients = listRecipeIngredient;
         this.instruction = instruction;
         this.categories = categories;
 
@@ -62,10 +67,10 @@ public class Recipe {
 
     public void setRecipeIngredient(List<RecipeIngredient> recipeIngredient) {
 
-        if(this.recipeIngredient == null){
-            this.recipeIngredient = new ArrayList<>();
+        if(this.recipeIngredients == null){
+            this.recipeIngredients = new ArrayList<>();
         }
-        this.recipeIngredient = recipeIngredient;
+        this.recipeIngredients = recipeIngredient;
     }
 
     public void setCategories(List<RecipeCategory> categories) {
@@ -75,4 +80,6 @@ public class Recipe {
         }
         this.categories = categories;
     }
+
+
 }

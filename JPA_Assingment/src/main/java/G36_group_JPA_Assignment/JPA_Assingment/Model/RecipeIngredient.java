@@ -1,6 +1,8 @@
 package G36_group_JPA_Assignment.JPA_Assingment.Model;
 
 import lombok.*;
+
+import net.minidev.json.annotate.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -21,19 +23,27 @@ public class RecipeIngredient {
 
     private String recipeIngredientId;
     @ManyToOne(cascade = {
-            CascadeType.DETACH,
-            CascadeType.REFRESH},
+            CascadeType.ALL},
             fetch = FetchType.LAZY
     )
 
-    //@JoinColumn(name = "recipe_ingredient_recipe",table = "Ingredient")
+
+
     private Ingredient ingredient;
     private double amount;
     private Measurement measurement;
-    @ManyToOne(cascade = {
-            CascadeType.DETACH,
-            CascadeType.REFRESH},
-            fetch = FetchType.LAZY
+
+
+   @ManyToOne(targetEntity = Recipe.class,
+            cascade = CascadeType.ALL
+            , fetch = FetchType.EAGER
     )
+    @JoinColumn(name = "recipe_id")
+    //@JsonIgnore
     private Recipe recipe;
+
+
+
 }
+
+

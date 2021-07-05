@@ -107,21 +107,48 @@ class RecipeDAOTest {
         }
 
         recipes = recipeData();
+
+        // Set RecipeIngredient list
         recipes.get(0).setRecipeIngredient(Arrays.asList(recipeIngredientsData().get(0),recipeIngredientsData().get(1),recipeIngredientsData().get(2)));
         recipes.get(1).setRecipeIngredient(Arrays.asList(recipeIngredientsData().get(0),recipeIngredientsData().get(1),recipeIngredientsData().get(2),recipeIngredientsData().get(3)));
         recipes.get(2).setRecipeIngredient(Arrays.asList(recipeIngredientsData().get(0),recipeIngredientsData().get(2)));
-        recipes.get(0).setCategories(recipeCategoriesData());
-        recipes.get(1).setCategories(Arrays.asList(recipeCategoriesData().get(0), recipeCategoriesData().get(1),recipeCategoriesData().get(3),recipeCategoriesData().get(6)));
-        recipes.get(2).setCategories(Arrays.asList(recipeCategoriesData().get(0), recipeCategoriesData().get(3),recipeCategoriesData().get(6)));
+
+
+        // Set ingredient at index 0
         recipes.get(0).getRecipeIngredients().get(0).setIngredient(ingredientData().get(0));
         recipes.get(0).getRecipeIngredients().get(1).setIngredient(ingredientData().get(1));
         recipes.get(0).getRecipeIngredients().get(2).setIngredient(ingredientData().get(2));
+
+        // Set ingredient at index 1
         recipes.get(1).getRecipeIngredients().get(0).setIngredient(ingredientData().get(0));
         recipes.get(1).getRecipeIngredients().get(1).setIngredient(ingredientData().get(1));
         recipes.get(1).getRecipeIngredients().get(2).setIngredient(ingredientData().get(2));
         recipes.get(1).getRecipeIngredients().get(3).setIngredient(ingredientData().get(3));
+
+        // Set ingredient at index 2
         recipes.get(2).getRecipeIngredients().get(0).setIngredient(ingredientData().get(0));
         recipes.get(2).getRecipeIngredients().get(1).setIngredient(ingredientData().get(2));
+
+        //Set recipe in RecipeIngredient index 0
+        recipes.get(0).getRecipeIngredients().get(0).setRecipe(recipes.get(0));
+        recipes.get(0).getRecipeIngredients().get(1).setRecipe(recipes.get(0));
+        recipes.get(0).getRecipeIngredients().get(2).setRecipe(recipes.get(0));
+
+        //Set recipe in RecipeIngredient index 1
+        recipes.get(1).getRecipeIngredients().get(0).setRecipe(recipes.get(1));
+        recipes.get(1).getRecipeIngredients().get(1).setRecipe(recipes.get(1));
+        recipes.get(1).getRecipeIngredients().get(2).setRecipe(recipes.get(1));
+        recipes.get(1).getRecipeIngredients().get(3).setRecipe(recipes.get(1));
+
+        //Set recipe in RecipeIngredient index 2
+        recipes.get(2).getRecipeIngredients().get(0).setRecipe(recipes.get(2));
+        recipes.get(2).getRecipeIngredients().get(1).setRecipe(recipes.get(2));
+
+        // Set Categories
+        recipes.get(0).setCategories((Arrays.asList(recipeCategoriesData().get(2), recipeCategoriesData().get(5))));
+        recipes.get(1).setCategories(Arrays.asList(recipeCategoriesData().get(0), recipeCategoriesData().get(1),recipeCategoriesData().get(3),recipeCategoriesData().get(6)));
+        recipes.get(2).setCategories(Arrays.asList(recipeCategoriesData().get(0), recipeCategoriesData().get(3),recipeCategoriesData().get(6)));
+
 
 
         recipesInContext = testObject.saveAll(recipes);
@@ -150,7 +177,7 @@ class RecipeDAOTest {
     @Test
     void findRecipesByRecipeIngredientIngredientIngredientNameIgnoreCase() {
 
-        List<Recipe> result = testObject.findRecipesByRecipeIngredientsIngredientIngredientName("TestI1");
+        List<Recipe> result = testObject.findRecipesByRecipeIngredientsIngredientIngredientName("TestI2");
 
         System.out.println("\n Test2 \n");
         for(Recipe m : result)
@@ -165,9 +192,32 @@ class RecipeDAOTest {
 
     @Test
     void findRecipesByCategoriesCategoryIgnoreCase() {
+
+        List<Recipe> result = testObject.findRecipesByCategoriesCategoryIgnoreCase("Meat");
+
+        System.out.println("\n Test3 \n");
+        for(Recipe m : result)
+        {
+            System.out.println(m.toString());
+        }
+        assertNotNull(result);
+        assertFalse(result.isEmpty());
+        assertEquals(2, result.size());
     }
 
     @Test
     void findByCategoriesCategoryInIgnoreCase() {
+
+        List<String> temp = Arrays.asList("Meat","Spicy");
+        List<Recipe> result = testObject.findByCategoriesCategoryInIgnoreCase(temp);
+
+        System.out.println("\n Test4 \n");
+        for(Recipe m : result)
+        {
+            System.out.println(m.toString());
+        }
+        assertNotNull(result);
+        assertFalse(result.isEmpty());
+        assertEquals(3, result.size());
     }
 }

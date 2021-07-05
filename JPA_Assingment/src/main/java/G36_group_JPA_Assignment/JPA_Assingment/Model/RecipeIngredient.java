@@ -11,7 +11,6 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 @EqualsAndHashCode(exclude = "recipeIngredientId")
 @Entity
 public class RecipeIngredient {
@@ -39,7 +38,7 @@ public class RecipeIngredient {
             , fetch = FetchType.EAGER
     )
     @JoinColumn(name = "recipe_id")
-    //@JsonIgnore
+
     private Recipe recipe;
 
 

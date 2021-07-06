@@ -2,7 +2,7 @@ package G36_group_JPA_Assignment.JPA_Assingment.Model;
 
 import lombok.*;
 
-import net.minidev.json.annotate.JsonIgnore;
+
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;

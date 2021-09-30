@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Contact</title>
+</head>
+<body>
+
+    <h1>Contact</h1>
+    <form method="post" th:action="@{/contact/add}">
+        <label for="name">Enter a string</label>
+        <input type="number" name="name" id="name"><br>
+        <input type="submit" value="Submit">
+    </form>
+
+    <h1>Messages:</h1>
+    <div th:if="${strings.isEmpty()}">
+        <h4>No messages added yet, please add one</h4>
+    </div>
+
+    <ul th:each="message:${strings}">
+        <li>
+            <p th:text="${message}"></p>
+        </li>
+    </ul>
+
+</body>
+</html>

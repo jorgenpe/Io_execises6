@@ -65,6 +65,15 @@ public class Recipe {
 
     }
 
+    public Recipe(String recipeName) {
+        this.recipeName = recipeName;
+    }
+
+    public Recipe(String recipeName, RecipeInstruction instruction) {
+        this.recipeName = recipeName;
+        this.instruction = instruction;
+    }
+
     public void setRecipeIngredient(List<RecipeIngredient> recipeIngredient) {
 
         if(this.recipeIngredients == null){

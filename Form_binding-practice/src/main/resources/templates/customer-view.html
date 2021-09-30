@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>
+        Customer
+    </h1>
+    <p th:teext="${customer.email}"></p>
+    <p th:teext="${customer.regDate}"></p>
+    <p th:teext="${customer.active} ? 'ACTIVE' : 'INACTIVE'"></p>
+
+    <h3>Details</h3>
+
+<p>
+    <span th:text="${customer.details.street} +' '+ ${customer.details.zipCode} + ' ' ${customer.details.city}"></span>
+</p>
+
+</body>
+</html>

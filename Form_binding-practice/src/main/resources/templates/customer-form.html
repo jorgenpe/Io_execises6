@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post" th:action="@{/customer/create/process}" th:object="${form}">
+
+    <label for="email">State your email:</label>
+    <input type="text" name="email" id="email" th:value="${form.email}" th:field="*{email}" placeholder="Your email"><br>
+    <div th:if="${#fields.hasErrors('email')}">
+        <p th:each="error : ${#fields.errors('email')}" th:text="${error}>Error message"></p>
+    </div>
+
+    <label for="street">State your street:</label>
+    <input type="text" name="street" id="street" th:value="${form.street}" th:field="*{street}" placeholder="Your street address"><br>
+    <div th:if="${#fields.hasErrors('street')}">
+        <p th:each="error : ${#fields.errors('street')}" th:text="${error}>Error message"></p>
+    </div>
+
+    <label for="zipCode">State your zipcode:</label>
+    <input type="text" name="zipCode" id="zipCode" th:value="${form.zipCode}" th:field="*{zipCode}" placeholder="Your zipcode"><br>
+    <div th:if="${#fields.hasErrors('zipCode')}">
+        <p th:each="error : ${#fields.errors('zipCode')}" th:text="${error}>Error message"></p>
+    </div>
+
+    <label for="city">State your city:</label>
+    <input type="text" name="city" id="city" th:value="${form.city}" th:field="*{city}" placeholder="Your city"><br>
+    <div th:if="${#fields.hasErrors('city')}">
+        <p th:each="error : ${#fields.errors('city')}" th:text="${error}>Error message"></p>
+    </div>
+
+    <label for="homePhone">State your home-phone:</label>
+    <input type="text" name="homePhone" id="homePhone" th:value="${form.homePhone}" th:field="*{homePhone}" placeholder="Your home-phone number"><br>
+    <div th:if="${#fields.hasErrors('homePhone')}">
+        <p th:each="error : ${#fields.errors('homePhone')}" th:text="${error}>Error message"></p>
+    </div>
+
+    <label for="cellPhone">State your cell-phone:</label>
+    <input type="text" name="cellPhone" id="cellPhone"  th:value="${form.cellPhone}" th:field="*{cellPhone}" placeholder="Your cell-phone number">
+    <div th:if="${#fields.hasErrors('cellPhone')}">
+        <p th:each="error : ${#fields.errors('cellPhone')}" th:text="${error}>Error message"></p>
+    </div>
+
+
+    <br><br>
+    <input type="submit" value="Submit">
+</form>
+
+</body>
+</html>

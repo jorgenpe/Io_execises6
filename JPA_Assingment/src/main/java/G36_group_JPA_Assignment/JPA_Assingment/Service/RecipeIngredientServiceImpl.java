@@ -45,7 +45,7 @@ public class RecipeIngredientServiceImpl implements RecipeIngredientService{
 
         if(recipeIngredientDTO.getIngredient() != null){
             Ingredient ingredient = new Ingredient();
-            ingredient.setIngredientName(recipeIngredientDTO.getIngredient().getIngredientName());
+            ingredient.setIngredientName(recipeIngredientDTO.getIngredient().getIngredient());
             recipeIngredient.setIngredient(ingredient);
         }
 
@@ -88,8 +88,10 @@ public class RecipeIngredientServiceImpl implements RecipeIngredientService{
     public RecipeIngredientDTO update(String id, RecipeIngredientDTO recipeIngredientDTO){
 
         RecipeIngredient recipeIngredient = internalFindById(id);
-
-        recipeIngredient.setIngredient(recipeIngredientDTO.getIngredient());
+        Ingredient ingredient = new Ingredient();
+        ingredient.setIngredientName(recipeIngredientDTO.getIngredient().getIngredient());
+        ingredient.setIngredientId(recipeIngredientDTO.getIngredient().getId());
+        recipeIngredient.setIngredient(ingredient);
         recipeIngredient.setMeasurement(recipeIngredientDTO.getMeasurement());
         recipeIngredient.setAmount(recipeIngredientDTO.getAmount());
 

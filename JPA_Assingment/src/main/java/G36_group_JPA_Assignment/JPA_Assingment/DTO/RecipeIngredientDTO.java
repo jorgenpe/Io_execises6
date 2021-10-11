@@ -10,7 +10,7 @@ public class RecipeIngredientDTO implements Serializable {
 
 
     private String id;
-    private Ingredient ingredient;
+    private IngredientDTO ingredient;
     private double amount;
     private Measurement measurement;
     private Recipe recipe;
@@ -26,11 +26,11 @@ public class RecipeIngredientDTO implements Serializable {
         this.id = id;
     }
 
-    public Ingredient getIngredient() {
+    public IngredientDTO getIngredient() {
         return ingredient;
     }
 
-    public void setIngredient(Ingredient ingredient) {
+    public void setIngredient(IngredientDTO ingredient) {
         this.ingredient = ingredient;
     }
 

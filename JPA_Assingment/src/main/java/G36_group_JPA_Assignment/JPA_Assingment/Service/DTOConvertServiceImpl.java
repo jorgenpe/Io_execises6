@@ -47,7 +47,7 @@ public class DTOConvertServiceImpl implements DTOConverterService{
         if(recipeIngredient != null){
             recipeIngredientDTO = new RecipeIngredientDTO();
             recipeIngredientDTO.setId(recipeIngredient.getRecipeIngredientId());
-            recipeIngredientDTO.setIngredient(recipeIngredient.getIngredient());
+            recipeIngredientDTO.setIngredient(recipeIngredientDTO.getIngredient());
             recipeIngredientDTO.setAmount(recipeIngredient.getAmount());
             recipeIngredientDTO.setMeasurement(recipeIngredient.getMeasurement());
             recipeIngredientDTO.setRecipe(recipeIngredient.getRecipe());
@@ -63,7 +63,7 @@ public class DTOConvertServiceImpl implements DTOConverterService{
         if(recipe != null){
             recipeDTO = new RecipeDTO();
             recipeDTO.setRecipeName(recipe.getRecipeName());
-            recipeDTO.setInstruction(recipe.getInstruction());
+            recipeDTO.setInstruction(recipeDTO.getInstruction());
         }
         return recipeDTO;
 

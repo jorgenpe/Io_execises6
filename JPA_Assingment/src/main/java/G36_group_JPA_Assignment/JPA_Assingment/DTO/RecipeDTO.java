@@ -12,7 +12,7 @@ public class RecipeDTO implements Serializable {
     private int id;
     private String recipeName;
     private List<RecipeIngredientDTO> recipeIngredients;
-    private RecipeInstruction instruction;
+    private RecipeInstructionDTO instruction;
     private List<RecipeCategoryDTO> categories;
 
     public RecipeDTO() {
@@ -42,11 +42,11 @@ public class RecipeDTO implements Serializable {
         this.recipeIngredients = recipeIngredients;
     }
 
-    public RecipeInstruction getInstruction() {
+    public RecipeInstructionDTO getInstruction() {
         return instruction;
     }
 
-    public void setInstruction(RecipeInstruction instruction) {
+    public void setInstruction(RecipeInstructionDTO instruction) {
         this.instruction = instruction;
     }
 

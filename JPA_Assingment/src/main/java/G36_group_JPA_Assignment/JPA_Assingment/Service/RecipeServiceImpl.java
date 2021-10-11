@@ -45,7 +45,7 @@ public class RecipeServiceImpl implements RecipeService{
 
         if(recipeDTO.getInstruction() != null){
             RecipeInstruction recipeInstruction = new RecipeInstruction();
-            recipeInstruction.setInstruction(recipeDTO.getInstruction().getInstruction());
+            recipeInstruction.setInstruction(recipeDTO.getInstruction().getInstructions());
             recipe.setInstruction(recipeInstruction);
         }
 
@@ -88,9 +88,12 @@ public class RecipeServiceImpl implements RecipeService{
     public RecipeDTO update(String id, RecipeDTO recipeDTO){
 
         Recipe recipe = internalFindById(id);
+        RecipeInstruction instruction = new RecipeInstruction();
+        instruction.setInstruction(recipeDTO.getInstruction().getInstructions());
+        instruction.setInstruction(recipeDTO.getInstruction().getId());
 
         recipe.setRecipeName(recipeDTO.getRecipeName());
-        recipe.setInstruction(recipeDTO.getInstruction());
+        recipe.setInstruction(instruction);
 
         recipe = recipeDAO.save(recipe);
 
